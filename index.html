@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html manifest="tetris.manifest">
+<head>
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- For iPhone 4 with high-resolution Retina display: -->
+    <link rel="apple-touch-icon" sizes="114x114" href="icon-114x114.PNG"/>
+    <!-- For first-generation iPad: -->
+    <link rel="apple-touch-icon" sizes="72x72" href="icon-72x72.PNG"/>
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon" sizes="57x57" href="icon-57x57.PNG"/>
+
+    <link rel="apple-touch-startup-image" href="startup.PNG" media="screen and (min-device-width: 200px) and (max-device-width: 320) and (orientation:portrait)" />
+
+    <title>txt fmt</title>
+</head>
+<body>
+  <script type="text/javascript">
+    function do_lc(id) {
+      var textarea = document.getElementById(id);
+      textarea.value = textarea.value.toLowerCase();
+    }
+    function do_uc(id) {
+      var textarea = document.getElementById(id);
+      textarea.value = textarea.value.toUpperCase();
+    }
+    function rot13(str) {
+      return str.replace(/[a-zA-Z]/g, function(c) {
+        return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+      });
+    }
+    function do_rot13(id) {
+      var textarea = document.getElementById(id);
+      textarea.value = rot13(textarea.value);
+    }
+  </script>
+   <form>
+     <textarea id="my-textarea" style='width:300px;height:160px;'></textarea><br>
+     <input type="button" onclick="do_lc('my-textarea')" value="lc">
+     <input type="button" onclick="do_uc('my-textarea')" value="uc">
+     <input type="button" onclick="do_rot13('my-textarea')" value="rot13">
+   </form>
+   <br>Instructions:
+   <ul><li>Paste text into the text box.</li>
+   <li>Tap a button.</li>
+   <li>Copy text from the text box.</li></ul>
+</body>
+</html>
